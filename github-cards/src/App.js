@@ -6,37 +6,45 @@ import Followers from './Followers';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {}
+    // this.state = {}
+    this.state = {
+      userData: []
+    }
   }
 
   componentDidMount() {
-    axios.get('https://api.github.com/users/stackpearson')
-    .then(response => {
-      console.log(response.data)
-      this.setState(response.data);
-    })
-    .catch(error => {
-      console.log('error in api request')
-    })
+    // axios.get('https://api.github.com/users/stackpearson')
+    // .then(response => {
+    //   // console.log(response.data)
+    //   this.setState(response.data);
+    // })
+    // .catch(error => {
+    //   console.log('error in api request')
+    // })
+
+    fetch('https://api.github.com/users/stackpearson')
+      .then(res => res.json())
+      .then(data => this.setState({userData: data}))
+      .catch(err => console.log('error in user API call'));
   }
 
-  
+   
 
     render() {
       return (
         <div className="App">
+          {console.log('this.state', this.state)}
 
-          <p>{this.state.login} | {this.state.name}</p>
-          <p>{this.state.location} | {this.state.public_repos} Repos</p>
-          <p>{this.state.bio}</p>
-          <p></p>
+          <p>{this.state.userData.login} | {this.state.userData.name}</p>
+          <p>{this.state.userData.location} | {this.state.userData.public_repos} Repos</p>
+          <p>{this.state.userData.bio}</p>
 
           <div className='follower-flex'>
 
             <div>
               <div className='follower-number-flex'>
-                <p>Followers: {this.state.followers}</p>
-                <p>Following: {this.state.following}</p>
+                <p>Followers: {this.state.userData.followers}</p>
+                <p>Following: {this.state.userData.following}</p>
               </div>
 
               <Followers />
