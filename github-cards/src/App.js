@@ -6,29 +6,17 @@ import Followers from './Followers';
 class App extends React.Component {
   constructor() {
     super();
-    // this.state = {}
     this.state = {
       userData: []
     }
   }
 
   componentDidMount() {
-    // axios.get('https://api.github.com/users/stackpearson')
-    // .then(response => {
-    //   // console.log(response.data)
-    //   this.setState(response.data);
-    // })
-    // .catch(error => {
-    //   console.log('error in api request')
-    // })
-
     fetch('https://api.github.com/users/stackpearson')
       .then(res => res.json())
       .then(data => this.setState({userData: data}))
       .catch(err => console.log('error in user API call'));
   }
-
-   
 
     render() {
       return (

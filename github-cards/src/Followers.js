@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 
 class Followers extends React.Component {
@@ -17,12 +16,11 @@ class Followers extends React.Component {
           .then(names => this.setState({followerNames: names}))
           .catch(err => console.log('error in followers API call'));
       }
+      
       render() {
 
         return (
             <div className="follow-lists">
-
-                {/* <>{console.log('this.state', this.state )}</> */}
 
                 <ul>
                     {this.state.followerNames.map(followers =>
