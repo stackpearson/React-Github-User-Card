@@ -16,17 +16,17 @@ class Followers extends React.Component {
           .then(names => this.setState({followerNames: names}))
           .catch(err => console.log('error in followers API call'));
       }
-      
+
       render() {
 
         return (
-            <div className="follow-lists">
+            <div id='followers'>
 
-                <ul>
+                
                     {this.state.followerNames.map(followers =>
                         <li key={followers.id}>{followers.login}</li>
                     )}
-                </ul>
+                
 
             </div>
         );
